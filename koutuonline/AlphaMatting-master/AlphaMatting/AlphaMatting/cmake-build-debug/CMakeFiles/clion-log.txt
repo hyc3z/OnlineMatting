@@ -1,0 +1,17 @@
+/home/hu/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/183.4588.63/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/hu/Downloads/AlphaMatting-master/AlphaMatting/AlphaMatting
+-- Found OpenCV: /usr (found version "3.4.1") 
+-- Configuring done
+CMake Error at CMakeLists.txt:8 (add_executable):
+  Cannot find source file:
+
+    main.cpp
+
+  Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+  .hpp .hxx .in .txx
+
+
+CMake Error at CMakeLists.txt:8 (add_executable):
+  No SOURCES given to target: AlphaMatting
+
+
+-- Build files have been written to: /home/hu/Downloads/AlphaMatting-master/AlphaMatting/AlphaMatting/cmake-build-debug

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/AlphaMatting.dir/main.cpp.o CMakeFiles/AlphaMatting.dir/SharedMatting.cpp.o  -o AlphaMatting 

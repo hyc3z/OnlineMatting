@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Paint</title>
+    <script type="text/javascript"> src="{% static "/js/bootstrap.js" %}"</script>
+<link type="text/css" rel="stylesheet" href={% static "/css/bootstrap.css" %}>
+  <style type="text/css">
+
+body {
+  background-image: image({% static "/images/pen_red.gif" %});
+}
+
+.Toolbar {
+  float: left;
+  font-family: 'Trebuchet MS';
+  font-size: 14px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #F2F7FE;
+  padding: 10px 15px 3px 10px;
+  margin-bottom: 1px;
+  margin-right: 1px;
+  border: 1px solid #7B899B;
+}
+
+.Toolbar button {
+  padding: 6px;
+  margin: 7px 2px;
+  font-variant: normal;
+  font-size: 12px;
+}
+
+.CanvasContainer {
+  clear: both;
+}
+
+canvas {
+  border: 1px solid #7B899B;
+}
+
+img {
+  padding: 2px;
+  border: 2px solid #F2F7FE;
+}
+
+img:hover {
+  border: 2px groove #E4F0FE;
+  background: none;
+}
+
+
+img.Selected {
+  border: 2px groove #E4F0FE;
+}
+
+#savedCopyContainer {
+  display: none;
+}
+
+#savedCopyContainer img {
+  width: 250px;
+  height: 125px;
+}
+
+  </style>
+  <script>
+    var canvas;
+    var context;
+
+    // 初始化
+    image1 = new Image();
+    image1.src = "{{ imgs.img.url }}";
+    image1.onloadend = function() {
+      // 获取画布已经绘图上下文
+      canvas = document.getElementById("drawingCanvas");
+      document.getElementById("drawingCanvas").width = image1.width;
+      document.getElementById("drawingCanvas").height = image1.height;
+      alert(image1.width+" "+image1.height);
+      context = canvas.getContext("2d");
+      context.drawImage(image1,0,0,canvas.width,canvas.height);
+      context.strokeStyle = "rgb(192,192,192)";
+      context.lineWidth = (image1.width+image1.height)/40;
+      // 画布添加鼠标事件
+      canvas.onmousedown = startDrawing;
+      canvas.onmouseup = stopDrawing;
+      canvas.onmouseout = stopDrawing;
+      canvas.onmousemove = draw;
+    };
+
+
+    // 记录当前是否在画图
+    var isDrawing = false;
+
+    // 开始画图
+    function startDrawing(e) {
+      isDrawing = true;
+      // 创建一个新的绘图路径
+      context.beginPath();
+      // 把画笔移动到鼠标位置
+      context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+    }
+
+    // 停止画图
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    //画图中
+    function draw(e) {
+      if (isDrawing == true) {
+        // 找到鼠标最新位置
+        var x = e.pageX - canvas.offsetLeft;
+        var y = e.pageY - canvas.offsetTop;
+        // 画一条直线到鼠标最新位置
+        context.lineTo(x, y);
+        context.stroke();
+      }
+    }
+
+    // 保存之前选择的颜色的画笔 <img> 元素标签
+    var previousColorElement;
+
+    // 改变画笔颜色
+    function changeColor(color, imgElement) {
+      context.strokeStyle = color;
+      // 将当前画笔的 <img> 元素标签设置为选中样式
+      imgElement.className = "Selected";
+      // 将之前的画笔的 <img> 元素标签恢复默认样式
+      if (previousColorElement != null) previousColorElement.className = "";
+      previousColorElement = imgElement;
+    }
+
+    // 保存之前选择的粗细的画笔 <img> 元素标签
+    var previousThicknessElement;
+
+    // 改变画笔粗细
+    function changeThickness(thickness, imgElement) {
+      context.lineWidth = thickness;
+      // 将当前画笔的 <img> 元素标签设置为选中样式
+      imgElement.className = "Selected";
+      // 将之前的画笔的 <img> 元素标签恢复默认样式
+      if (previousThicknessElement != null) previousThicknessElement.className = "";
+      previousThicknessElement = imgElement;
+    }
+
+    // 清除画布
+    function clearCanvas() {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(image1,0,0,canvas.width,canvas.height);
+    }
+
+    function upload(image) {
+        var imgFile=dataURLtoFile(image,"img.png");
+        var xhr=new XMLHttpRequest();
+        var fd=new FormData();
+        xhr.open('POST','/scribble');
+        fd.append("multipartFile",imgFile);
+        xhr.send(fd);
+        console.log('上传json！')
+    }
+    // 保存画布
+    function saveCanvas() {
+      // 找到预览的 <img> 元素标签
+      var base64 = canvas.toDataURL('images/png');
+      upload(base64);
+    }
+
+  </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href={% url "upload" %}>在线trimap抠图</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href={% url "scribble" %}>在线scribble抠图</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href={% url "paint" %}>图片编辑器</a>
+    </li>
+  </ul>
+</nav>
+
+  <div class="CanvasContainer">
+    <canvas id="drawingCanvas">
+    </canvas>
+  </div>
+      <button onclick="changeColor('rgb(0,0,0)')">标记背景</button>
+      <button onclick="changeColor('rgb(255,255,255)')">标记物体</button>
+    <button onclick="clearCanvas()">清除笔迹</button>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hu/Downloads/AlphaMatting-master/AlphaMatting/AlphaMatting/SharedMatting.h
+iostream
+-
+opencv2/core/core.hpp
+-
+opencv2/highgui/highgui.hpp
+-
+cmath
+-
+vector
+-
+
+/home/hu/Downloads/AlphaMatting-master/AlphaMatting/AlphaMatting/main.cpp
+iostream
+-
+string
+-
+SharedMatting.h
+/home/hu/Downloads/AlphaMatting-master/AlphaMatting/AlphaMatting/SharedMatting.h
+

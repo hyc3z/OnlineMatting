@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<link type="text/css" rel="stylesheet" href={% static "/css/bootstrap.css" %}>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href={% url "upload" %}>在线trimap抠图</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href={% url "scribble" %}>在线scribble抠图</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href={% url "paint" %}>图片编辑器</a>
+    </li>
+  </ul>
+</nav>
+
+
+<div class="container">
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">在线抠图</h2>
+    <div class="container">
+        <div class="card">
+    <div class="card-body">上传原图片:
+     <input type="file" name="img"></div>
+      </div>
+      <br>
+      <div class="card bg-primary text-white">
+        <div class="card-body"><button  class="btn btn-lg btn-primary btn-block" type="submit">上传</button>
+        </div>
+      </div>
+      <br>
+    </div>
+      </form>
+</body>
+</html>
