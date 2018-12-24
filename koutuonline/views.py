@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .models import *
 import os
+import subprocess
 # Create your views here.
 
 supported_format = ['jpg', 'png']
@@ -82,9 +83,12 @@ def uploadImg3(request):
                 print(folder_path)
                 print("python3 koutuonline/closed-form-matting-master/closed_form_matting.py "+folder_path+img1[0].img.url+" -s "+folder_path+img1[1].img.url+" -o "+folder_path+\
                       "/koutuonline/static/images/output.png")
-                os.system("python3 koutuonline/closed-form-matting-master/closed_form_matting.py "+folder_path+img1[0].img.url+" -s "+folder_path+img1[1].img.url+" -o "+folder_path+\
-                      "/koutuonline/static/images/output.png")
-            return render(request, 'img_tem/show.html')
+                p = subprocess.Popen("python3 koutuonline/closed-form-matting-master/closed_form_matting.py "+folder_path+img1[0].img.url+" -s "+folder_path+img1[1].img.url+" -o "+folder_path+\
+                      "/koutuonline/static/images/output.png", cwd=folder_path, shell=True)
+
+                # p = subprocess.Popen("pip3 list outdated",shell=True)
+                p.communicate()
+                return render(request, 'img_tem/show.html')
         except AttributeError:
             return HttpResponseRedirect('/scribble')
     else:
