@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+#BASE_DIR = '/home/OnlineMatting'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -22,18 +22,19 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'e@yiub-y)99o&ws9yhihd4l@)%-)bc&*$)9*@t7n8r(kl6^q5p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '/koutuonline/static')
+STATIC_ROOT =BASE_DIR+'/koutuonline/static'
+print(STATIC_ROOT)
 # 设置图片等静态文件的路径
-STATICFILES_DIRS = (
-    ('images',os.path.join(STATIC_ROOT,'/images').replace('\\','/') ),
-    ('css',os.path.join(STATIC_ROOT,'/css').replace('\\','/') ),
-    ('js',os.path.join(STATIC_ROOT,'/js').replace('\\','/') ),
-)
+#STATICFILES_DIRS = (
+#    ('images',(STATIC_ROOT+'/images').replace('\\','/') ),
+#    ('css',(STATIC_ROOT+'/css').replace('\\','/') ),
+#    ('js',(STATIC_ROOT+'/js').replace('\\','/') ),
+#)
 # Application definition
 
 INSTALLED_APPS = [
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'koutu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [(BASE_DIR+'/templates')]
 ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -84,7 +85,7 @@ WSGI_APPLICATION = 'koutu.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME':(BASE_DIR+'/db.sqlite3'),
     }
 }
 
@@ -126,5 +127,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media').replace('\\', '/')     #设置静态文件路径为主目录下的media文件夹
+MEDIA_ROOT = (BASE_DIR+'/media').replace('\\', '/')     #设置静态文件路径为主目录下的media文件夹
 MEDIA_URL = '/media/'                                                 #url映射
