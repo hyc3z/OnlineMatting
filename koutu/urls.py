@@ -26,7 +26,6 @@ urlpatterns = [
     url(r'^$', view.uploadImg, name="index"),
     url(r'^admin/', admin.site.urls),
     url(r'^paint', view.uploadImg2, name="paint"),
-    url(r'^scribble', view.uploadImg3, name="scribble"),
     url(r'^upload', view.uploadImg, name="upload"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

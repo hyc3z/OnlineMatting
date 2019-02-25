@@ -74,11 +74,24 @@ void SharedMatting::loadImage(char * filename)
 void SharedMatting::loadTrimap(char * filename)
 {
     trimap = imread(filename);
+    for (int i = 0; i<trimap.rows; i++)
+    {
+        for(int j = 0;j<trimap.cols;j++)
+        {
+            Vec3b gray(128,128,128);
+            Vec3b white(255,255,255);
+            Vec3b black(0,0,0);
+            if(trimap.at<Vec3b>(i,j)!=white&&trimap.at<Vec3b>(i,j)!=black){
+                trimap.at<Vec3b>(i,j) = gray;
+            }
+        }
+    }
     if (!trimap.data)
     {
         cout << "Loading Trimap Failed!" << endl;
         exit(-1);
     }
+    imwrite(filename,trimap);
     /*cvNamedWindow("aa");
     cvShowImage("aa", trimap);
     cvWaitKey(0);*/
@@ -799,9 +812,7 @@ void SharedMatting::refineSample()
                 {
                     continue;
                 }
-
                 double m  = mP(xi, yj, t.f, t.b);
-
                 if (m > minvalue[2])
                 {
                     continue;
@@ -1078,20 +1089,20 @@ void SharedMatting::solveAlpha()
     cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //refineSample()
-    start = clock();
+//    start = clock();
     cout << "Refining...";
-    refineSample();
+     refineSample();
     cout << "    over!!!" << endl;
-    finish = clock();
-    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
+//    finish = clock();
+//    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //localSmooth()
-    start = clock();
+//    start = clock();
     cout << "LocalSmoothing...";
-    localSmooth();
+     localSmooth();
     cout << "    over!!!" << endl;
-    finish = clock();
-    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
+//    finish = clock();
+//    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //getMatte()
     getMatte();

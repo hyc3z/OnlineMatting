@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>显示结果</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -13,16 +13,13 @@
       <a class="nav-link" href={% url "upload" %}>在线trimap抠图</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href={% url "scribble" %}>在线scribble抠图</a>
-    </li>
-    <li class="nav-item">
       <a class="nav-link" href={% url "paint" %}>图片编辑器</a>
     </li>
   </ul>
 </nav>
 
 <div class="container">
-    <img src="{% static "/images/output.png" %}">
+    <img src="{% static "/images/output"%}{{ num }}.png">
 </div>
 
 </body>

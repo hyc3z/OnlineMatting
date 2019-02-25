@@ -71,13 +71,12 @@ img.Selected {
 
     // 初始化
     image1 = new Image();
-    image1.src = "{{ imgs.img.url }}";
+    image1.src = "{% static "/images/paint"%}{{ imgs }}.png";
     image1.onloadend = function() {
       // 获取画布已经绘图上下文
       canvas = document.getElementById("drawingCanvas");
       document.getElementById("drawingCanvas").width = image1.width;
       document.getElementById("drawingCanvas").height = image1.height;
-      alert(image1.width+" "+image1.height);
       context = canvas.getContext("2d");
       context.drawImage(image1,0,0,canvas.width,canvas.height);
       context.strokeStyle = "rgb(192,192,192)";
@@ -173,10 +172,7 @@ img.Selected {
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
   <ul class="navbar-nav">
     <li class="nav-item">
-      <a class="nav-link" href={% url "upload" %}>在线trimap抠图</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href={% url "scribble" %}>在线scribble抠图</a>
+      <a class="nav-link" href={% url "upload" %}>在线抠图</a>
     </li>
     <li class="nav-item active">
       <a class="nav-link" href={% url "paint" %}>图片编辑器</a>
