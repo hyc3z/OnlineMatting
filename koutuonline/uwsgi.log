@@ -1,0 +1,147 @@
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sat Dec 29 11:24:36 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-36) on 27 December 2018 08:42:04
+os: Linux-3.10.0-693.el7.x86_64 #1 SMP Tue Aug 22 21:09:27 UTC 2017
+nodename: VM_0_13_centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/OnlineMatting/koutuonline
+writing pidfile to pid.uwsgi
+detected binary path: /usr/local/python3/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/OnlineMatting
+your processes number limit is 3895
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 bound to TCP address 127.0.0.1:8090 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.8 (default, Dec 27 2018, 16:39:53)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0xb16c70
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 656280 bytes (640 KB) for 8 cores
+*** Operational MODE: preforking ***
+/home/OnlineMatting/koutuonline/static
+WSGI app 0 (mountpoint='') ready in 0 seconds on interpreter 0xb16c70 pid: 5692 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+spawned uWSGI master process (pid: 5692)
+spawned uWSGI worker 1 (pid: 5699, cores: 1)
+spawned uWSGI worker 2 (pid: 5700, cores: 1)
+spawned uWSGI worker 3 (pid: 5701, cores: 1)
+spawned uWSGI worker 4 (pid: 5702, cores: 1)
+spawned uWSGI worker 5 (pid: 5703, cores: 1)
+spawned uWSGI worker 6 (pid: 5704, cores: 1)
+spawned uWSGI worker 7 (pid: 5705, cores: 1)
+spawned uWSGI worker 8 (pid: 5706, cores: 1)
+[pid: 5700|app: 0|req: 1/1] 202.120.121.107 () {46 vars in 767 bytes} [Sat Dec 29 03:25:26 2018] GET / => generated 1402 bytes in 37 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 2/2] 202.120.121.107 () {48 vars in 815 bytes} [Sat Dec 29 03:25:27 2018] GET /paint => generated 1254 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5706|app: 0|req: 1/3] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:25:28 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 22 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+/media/img/input_7sImqDM.png
+[pid: 5700|app: 0|req: 3/4] 202.120.121.107 () {52 vars in 1047 bytes} [Sat Dec 29 03:25:31 2018] POST /paint => generated 5009 bytes in 45 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 1/5] 202.120.121.107 () {46 vars in 769 bytes} [Sat Dec 29 03:25:31 2018] GET /media/img/input_7sImqDM.png => generated 101 bytes in 24 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 4/6] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:25:31 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 5/7] 202.120.121.107 () {48 vars in 822 bytes} [Sat Dec 29 03:25:57 2018] GET /upload => generated 1402 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 6/8] 202.120.121.107 () {48 vars in 827 bytes} [Sat Dec 29 03:26:02 2018] GET /scribble => generated 1407 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 7/9] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:02 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+.
+python3 koutuonline/closed-form-matting-master/closed_form_matting.py ./media/img/output.png -s ./media/img/scribbles.png -o ./koutuonline/static/images/output4.png
+INFO:root:Computing Matting Laplacian.
+INFO:root:Solving for alpha.
+[pid: 5700|app: 0|req: 8/10] 202.120.121.107 () {52 vars in 1054 bytes} [Sat Dec 29 03:26:09 2018] POST /scribble => generated 673 bytes in 1279 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 2/11] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:11 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 9/12] 202.120.121.107 () {48 vars in 825 bytes} [Sat Dec 29 03:26:14 2018] GET /upload => generated 1402 bytes in 1 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 10/13] 202.120.121.107 () {48 vars in 827 bytes} [Sat Dec 29 03:26:15 2018] GET /scribble => generated 1407 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 3/14] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:16 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+.
+python3 koutuonline/closed-form-matting-master/closed_form_matting.py ./media/img/scribbles_CNKWfeD.png -s ./media/img/output_teVTgQD.png -o ./koutuonline/static/images/output7.png
+INFO:root:Computing Matting Laplacian.
+INFO:root:Solving for alpha.
+[pid: 5700|app: 0|req: 11/15] 202.120.121.107 () {52 vars in 1056 bytes} [Sat Dec 29 03:26:23 2018] POST /scribble => generated 673 bytes in 421 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 4/16] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:24 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 12/17] 202.120.121.107 () {48 vars in 829 bytes} [Sat Dec 29 03:26:26 2018] GET /scribble => generated 1407 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 13/18] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:26 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+.
+python3 koutuonline/closed-form-matting-master/closed_form_matting.py ./media/img/scribbles_BFDoXS5.png -s ./media/img/scribbles_8kHs83g.png -o ./koutuonline/static/images/output9.png
+INFO:root:Computing Matting Laplacian.
+INFO:root:Solving for alpha.
+[pid: 5700|app: 0|req: 14/19] 202.120.121.107 () {52 vars in 1054 bytes} [Sat Dec 29 03:26:32 2018] POST /scribble => generated 673 bytes in 7397 msecs (HTTP/1.1 200) 3 headers in 109 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 5/20] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:40 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 5700|app: 0|req: 15/21] 202.120.121.107 () {48 vars in 823 bytes} [Sat Dec 29 03:26:47 2018] GET /paint => generated 1254 bytes in 2 msecs (HTTP/1.1 200) 5 headers in 292 bytes (1 switches on core 0)
+[pid: 5702|app: 0|req: 1/22] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:47 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 26 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+/media/img/source.png
+[pid: 5700|app: 0|req: 16/23] 202.120.121.107 () {52 vars in 1045 bytes} [Sat Dec 29 03:26:54 2018] POST /paint => generated 5002 bytes in 52 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 6/24] 202.120.121.107 () {46 vars in 755 bytes} [Sat Dec 29 03:26:55 2018] GET /media/img/source.png => generated 94 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+[pid: 5706|app: 0|req: 2/25] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:26:55 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+/media/img/source_lDwGlNj.png
+[pid: 5700|app: 0|req: 17/26] 202.120.121.107 () {54 vars in 1076 bytes} [Sat Dec 29 03:43:59 2018] POST /paint => generated 5010 bytes in 40 msecs (HTTP/1.1 200) 3 headers in 110 bytes (1 switches on core 0)
+[pid: 5705|app: 0|req: 7/27] 202.120.121.107 () {46 vars in 771 bytes} [Sat Dec 29 03:43:59 2018] GET /media/img/source_lDwGlNj.png => generated 102 bytes in 1 msecs (HTTP/1.1 404) 3 headers in 101 bytes (1 switches on core 0)
+[pid: 5703|app: 0|req: 1/28] 202.120.121.107 () {46 vars in 669 bytes} [Sat Dec 29 03:43:59 2018] GET /static/css/bootstrap.css.map => generated 82 bytes in 24 msecs (HTTP/1.1 404) 3 headers in 100 bytes (1 switches on core 0)
+...brutally killing workers...
+worker 1 buried after 1 seconds
+worker 2 buried after 1 seconds
+worker 3 buried after 1 seconds
+worker 4 buried after 1 seconds
+worker 5 buried after 1 seconds
+worker 6 buried after 1 seconds
+worker 7 buried after 1 seconds
+worker 8 buried after 1 seconds
+binary reloading uWSGI...
+chdir() to /home/OnlineMatting/koutuonline
+closing all non-uwsgi socket fds > 2 (max_fd = 100001)...
+found fd 3 mapped to socket 0 (127.0.0.1:8090)
+running /usr/local/python3/bin/uwsgi
+[uWSGI] getting INI configuration from ../test_proj.ini
+*** Starting uWSGI 2.0.17.1 (64bit) on [Sat Dec 29 03:45:21 2018] ***
+compiled with version: 4.8.5 20150623 (Red Hat 4.8.5-36) on 27 December 2018 08:42:04
+os: Linux-3.10.0-693.el7.x86_64 #1 SMP Tue Aug 22 21:09:27 UTC 2017
+nodename: VM_0_13_centos
+machine: x86_64
+clock source: unix
+pcre jit disabled
+detected number of CPU cores: 1
+current working directory: /home/OnlineMatting/koutuonline
+detected binary path: /usr/local/python3/bin/uwsgi
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+chdir() to /home/OnlineMatting
+your processes number limit is 3895
+your memory page size is 4096 bytes
+detected max file descriptor number: 100001
+lock engine: pthread robust mutexes
+thunder lock: disabled (you can enable it with --thunder-lock)
+uwsgi socket 0 inherited INET address 127.0.0.1:8090 fd 3
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+Python version: 3.6.8 (default, Dec 27 2018, 16:39:53)  [GCC 4.8.5 20150623 (Red Hat 4.8.5-36)]
+*** Python threads support is disabled. You can enable it with --enable-threads ***
+Python main interpreter initialized at 0x19f1570
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+your server socket listen backlog is limited to 100 connections
+your mercy for graceful operations on workers is 60 seconds
+mapped 656280 bytes (640 KB) for 8 cores
+*** Operational MODE: preforking ***
+/home/OnlineMatting/koutuonline/static
+WSGI app 0 (mountpoint='') ready in 1 seconds on interpreter 0x19f1570 pid: 5692 (default app)
+uWSGI running as root, you can use --uid/--gid/--chroot options
+*** WARNING: you are running uWSGI as root !!! (use the --uid flag) *** 
+*** uWSGI is running in multiple interpreter mode ***
+gracefully (RE)spawned uWSGI master process (pid: 5692)
+spawned uWSGI worker 1 (pid: 7584, cores: 1)
+spawned uWSGI worker 2 (pid: 7585, cores: 1)
+spawned uWSGI worker 3 (pid: 7586, cores: 1)
+spawned uWSGI worker 4 (pid: 7587, cores: 1)
+spawned uWSGI worker 5 (pid: 7588, cores: 1)
+spawned uWSGI worker 6 (pid: 7589, cores: 1)
+spawned uWSGI worker 7 (pid: 7590, cores: 1)
+spawned uWSGI worker 8 (pid: 7591, cores: 1)

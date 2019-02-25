@@ -1,0 +1,4 @@
+Cannot generate into /home/hu/PycharmProjects/OnlineMatting/koutuonline/AlphaMatting-master
+It is already used for project /home/OnlineMatting/koutuonline/AlphaMatting-master
+
+Please either delete it manually or select another generation directory
