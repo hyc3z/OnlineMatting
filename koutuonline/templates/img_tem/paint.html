@@ -70,23 +70,26 @@ img.Selected {
     var context;
 
     // 初始化
-    image1 = new Image();
-    image1.src = "{% static "/images/paint"%}{{ imgs }}.png";
-    image1.onloadend = function() {
-      // 获取画布已经绘图上下文
-      canvas = document.getElementById("drawingCanvas");
-      document.getElementById("drawingCanvas").width = image1.width;
-      document.getElementById("drawingCanvas").height = image1.height;
-      context = canvas.getContext("2d");
-      context.drawImage(image1,0,0,canvas.width,canvas.height);
-      context.strokeStyle = "rgb(192,192,192)";
-      context.lineWidth = (image1.width+image1.height)/40;
-      // 画布添加鼠标事件
-      canvas.onmousedown = startDrawing;
-      canvas.onmouseup = stopDrawing;
-      canvas.onmouseout = stopDrawing;
-      canvas.onmousemove = draw;
-    };
+    function f() {
+        var image1 = new Image();
+        image1.src = "{% static "/images/paint"%}{{ imgs }}.png";
+        image1.onload = function() {
+          // 获取画布已经绘图上下文
+          canvas = document.getElementById("drawingCanvas");
+          document.getElementById("drawingCanvas").width = image1.width;
+          document.getElementById("drawingCanvas").height = image1.height;
+          context = canvas.getContext("2d");
+          context.drawImage(image1,0,0,canvas.width,canvas.height);
+          context.strokeStyle = "rgb(192,192,192)";
+          context.lineWidth = (image1.width+image1.height)/40;
+          // 画布添加鼠标事件
+          canvas.onmousedown = startDrawing;
+          canvas.onmouseup = stopDrawing;
+          canvas.onmouseout = stopDrawing;
+          canvas.onmousemove = draw;
+        };
+    }
+
 
 
     // 记录当前是否在画图
@@ -182,6 +185,7 @@ img.Selected {
 
   <div class="CanvasContainer">
     <canvas id="drawingCanvas">
+        <script>f()</script>
     </canvas>
   </div>
       <button onclick="changeColor('rgb(0,0,0)')">标记背景</button>
