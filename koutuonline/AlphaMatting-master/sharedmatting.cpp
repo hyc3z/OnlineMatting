@@ -69,6 +69,7 @@ void SharedMatting::loadImage(char * filename)
 
 //    matte = cvCreateImage(cvSize(width, height), IPL_DEPTH_8U, 1);
     matte.create(Size(width, height), CV_8UC1);
+    cout<<channels<<endl;
 }
 //载入第三方图像
 void SharedMatting::loadTrimap(char * filename)
@@ -925,7 +926,7 @@ void SharedMatting::refineSample()
 
 
         ftuples[index].alphar = max(0.0, min(1.0,comalpha(pc, fc, bc)));
-        //cvSet2D(matte, xi, yj, ScalarAll(ftuples[index].alphar * 255));
+//        cvSet2D(matte, xi, yj, ScalarAll(ftuples[index].alphar * 255));
     }
     /*cvNamedWindow("1");
     cvShowImage("1", matte);*/
@@ -1046,11 +1047,23 @@ void SharedMatting::localSmooth()
     }
     ftuples.clear();
 }
-//存储图像
+
 void SharedMatting::save(char * filename)
 {
-
-    imwrite(filename, matte);
+    cv::Mat alpha = cv::Mat::zeros(matte.rows, matte.cols, CV_8UC1);
+    for (int i = 0; i < matte.rows; i++)
+    {
+        for (int j = 0; j < matte.cols; j++)
+        {
+            alpha.at<uchar>(i, j) = matte.at<uchar>(i, j);
+        }
+    }
+    std::vector<cv::Mat> srcChannels;
+    cv::split(pImg, srcChannels);
+    srcChannels.push_back(alpha);
+    //合并通道
+    cv::merge(srcChannels, pImg);
+    imwrite(filename,pImg);
 }
 
 void SharedMatting::getMatte()
@@ -1089,20 +1102,20 @@ void SharedMatting::solveAlpha()
     cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //refineSample()
-//    start = clock();
+    start = clock();
     cout << "Refining...";
      refineSample();
     cout << "    over!!!" << endl;
-//    finish = clock();
-//    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
+    finish = clock();
+    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //localSmooth()
-//    start = clock();
+    start = clock();
     cout << "LocalSmoothing...";
      localSmooth();
     cout << "    over!!!" << endl;
-//    finish = clock();
-//    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
+    finish = clock();
+    cout <<  double(finish - start) / (CLOCKS_PER_SEC * 2.5) << endl;
 
     //getMatte()
     getMatte();
